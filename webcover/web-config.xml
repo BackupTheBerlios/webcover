@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+<!DOCTYPE webcover PUBLIC
+    "-//CodeGuru.info //DTD WebCover Config 1.0//EN"
+    "http://codeguru.info/dtd/WebCover/web-config_1_0.dtd">
+<!--
+	$Id: web-config.xml,v 1.1 2004/04/27 16:25:28 jjhop Exp $
+-->
+  
+
+<webcover:web-conf 
+	xmlns:webcover="http://codeguru.info/_projects/webcover"
+	xmlns:dbxml="http://codeguru.info/_projects/dbxml">
+	<!-- konfiguracja bazy danych      -->
+	<dbxml:db-conf>
+		<dbxml:type-connect>persistent</dbxml:type-connect>
+		<dbxml:host>db-host.com</dbxml:host>
+		<dbxml:port>5432</dbxml:port>
+		<dbxml:user>user</dbxml:user>
+		<dbxml:pass>topsecret</dbxml:pass>
+		<dbxml:dbname>db-name</dbxml:dbname>
+	</dbxml:db-conf>
+    
+    <webcover:smarty-config>
+        <webcover:smarty-dir>/path/to/main/smarty/</webcover:smarty-dir>
+        <webcover:compile-dir>/path/where/smarty/will/store/compiled/templates/</webcover:compile-dir>
+        <webcover:config-dir>/path/to/smarty/configs/</webcover:config-dir>
+        <webcover:cache-dir caching="false">/path/to/cash/dir/</webcover:cache-dir>
+    </webcover:smarty-config>
+	
+
+	<webcover:actions-conf>
+		<webcover:action-suffix>.wbx</webcover:action-suffix>
+		<webcover:template-suffix>.html</webcover:template-suffix>
+		
+		<webcover:action-paths>
+			<webcover:path>/first/actions/directory/</webcover:path>
+			<webcover:path>/second/actions/directory</webcover:path>
+		</webcover:action-paths>
+		
+		<webcover:template-paths>
+			<webcover:path>/path/to/templates</webcover:path>
+		</webcover:template-paths>
+			
+		<webcover:global-forwards>
+			<!-- sample global forwards -->
+			<webcover:forward type="template" name="errorPage" path="/errorPage"/>
+			<webcover:forward type="template" name="helpPage" path="/help"/>
+		</webcover:global-forwards>
+		
+		<!-- sample actions -->
+		<webcover:actions-mapping>
+			
+            <webcover:action path="/index" class="Index">
+				<webcover:forward type="template" name="OK" path="/index.tmpl"/>
+				<webcover:forward type="action" name="success" path="/Welcome${action-suffix}"/>
+				<webcover:forward type="action" name="failure" path="/Logon${action-suffix}"/>
+			</webcover:action>
+            
+			<webcover:action path="/news/showAllNews" class="ShowAllNewsAction">
+				<webcover:forward type="template" name="OK" path="/Hello"/>
+				<webcover:forward type="action" name="success" path="/Welcome${action-suffix}"/>
+				<webcover:forward type="action" name="failure" path="/Logon${action-suffix}"/>
+			</webcover:action>
+		</webcover:actions-mapping>        
+	</webcover:actions-conf>
+</webcover:web-conf>
+
